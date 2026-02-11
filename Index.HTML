@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Porto 25 — Cardápio</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#073e40; /* versão escura do azul petróleo */
+      --accent:#d86c3d; /* laranja queimado */
+      --muted:#9fc0bd; /* verde-água claro */
+      --beige:#e9dcd2; /* bege */
+      --white: #fafaf8;
+      --max-width:900px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Poppins, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.35;
+    }
+
+    /* Top bar */
+    header{
+      position:sticky;top:0;z-index:30;background:linear-gradient(180deg, rgba(7,62,64,0.95), rgba(7,62,64,0.85));backdrop-filter:blur(6px);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .top-wrap{max-width:var(--max-width);margin:0 auto;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:56px;width:auto}
+    .brand h1{font-family:'Playfair Display';font-weight:700;margin:0;font-size:20px;letter-spacing:0.6px;color:var(--beige)}
+
+    nav{display:flex;gap:8px;flex-wrap:wrap}
+    .nav-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600;text-decoration:none;font-size:14px;transition:all .22s}
+    .nav-btn:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,0.35);color:var(--white);border-color:var(--accent)}
+
+    main{max-width:var(--max-width);margin:28px auto;padding:12px 20px 140px}
+
+    /* Hero */
+    .hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:36px 6px 18px}
+    .hero .logo-placeholder{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.03);border:4px solid rgba(255,255,255,0.03)}
+    .hero h2{font-family:'Playfair Display';font-size:48px;margin:18px 0 6px;color:var(--muted)}
+    .hero p{margin:0;color:var(--accent);font-weight:600;letter-spacing:1px}
+
+    /* Sections */
+    section{padding:22px 0;border-top:1px solid rgba(255,255,255,0.02)}
+    .section-title{font-family:'Playfair Display';font-size:36px;margin:8px 0 10px;color:var(--beige);display:flex;align-items:center;gap:12px}
+    .section-title::after{content:'';flex:1;height:4px;background:linear-gradient(90deg,var(--accent),rgba(216,108,61,0.6));margin-left:12px;border-radius:4px}
+
+    .grid{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start}
+    .item-title{font-weight:700;font-size:18px;letter-spacing:0.6px}
+    .item-desc{font-size:13px;color:rgba(255,255,255,0.72);margin-top:6px}
+    .price{font-weight:800;font-size:18px;color:var(--beige);padding-left:8px}
+
+    /* Floating WhatsApp */
+    .whatsapp{
+      position:fixed;right:18px;bottom:22px;z-index:50;background:linear-gradient(135deg,var(--accent),#c95a2f);border-radius:999px;padding:14px 16px;color:white;text-decoration:none;display:flex;align-items:center;gap:10px;box-shadow:0 12px 30px rgba(8,8,8,0.45);
+      animation: pulse 3s infinite;
+    }
+    .whatsapp span{font-weight:700}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+    /* Footer logo */
+    footer{max-width:var(--max-width);margin:40px auto 80px;padding:24px 20px;text-align:center;opacity:0.95}
+    footer img{height:80px;opacity:0.95}
+
+    /* Decorative svg backgrounds */
+    .decor{position:fixed;left:0;top:60px;right:0;bottom:0;pointer-events:none;z-index:5;opacity:0.07}
+    .decor svg{width:100%;height:100%;display:block}
+
+    /* Responsive tweaks */
+    @media (max-width:720px){
+      .hero h2{font-size:36px}
+      .section-title{font-size:28px}
+      .grid{grid-template-columns:1fr auto}
+      .brand h1{font-size:18px}
+    }
+
+    @media (max-width:420px){
+      .nav-btn{display:none}
+      .brand img{height:48px}
+      .hero h2{font-size:30px}
+      .grid{grid-template-columns:1fr auto}
+    }
+
+    /* Logotipo decorativo no rodapé */
+.logo-decorativa {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.08;
+  width: 180px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 36px 6px 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: none; /* tiramos o fundo branco */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-logo {
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10%;
+  background: none; /* garante transparência */
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.2)); /* leve sombra pra destacar */
+  margin-top: -8px; /* <-- move a logo 10px pra cima */
+}
+
+
+.hero h2 {
+  font-family: 'Playfair Display';
+  font-size: 48px;
+  margin: 18px 0 6px;
+  color: var(--muted);
+}
+
+.hero p {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Remove text logo from header */
+.brand h1 {
+  display: none;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Decorative faint SVG shapes (timão, peixes) -->
+  <div class="decor" aria-hidden="true">
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+      <g fill="none" stroke="white" stroke-width="2" opacity="0.15">
+        <path d="M120 140 C240 40 380 40 520 140 C660 240 820 240 940 140" stroke-linecap="round"/>
+        <g transform="translate(60,200) scale(0.9)">
+          <path d="M200 100 C260 80 320 80 380 100 C360 140 300 140 200 100" stroke-linejoin="round"/>
+        </g>
+        <g transform="translate(600,420) scale(1.0)">
+          <circle cx="60" cy="60" r="48" stroke-width="3"/>
+          <path d="M24 56 Q44 20 84 56 Q44 90 24 56"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <header>
+    <div class="top-wrap">
+      <div class="brand">
+        <h1>Porto 25</h1>
+      </div>
+      <nav>
+        <a class="nav-btn" href="#combos">Combos</a>
+        <a class="nav-btn" href="#porcoes">Porções</a>
+        <a class="nav-btn" href="#lanches">Lanches</a>
+        <a class="nav-btn" href="#grelhados">Grelhados</a>
+        <a class="nav-btn" href="#drinks">Drinks</a>
+        <a class="nav-btn" href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+ <section class="hero" aria-label="Introdução">
+  <div class="logo-circle">
+    <img src="logo.png" alt="Logo Porto 25" class="hero-logo">
+  </div>
+  <h2>Cartão de Embarque</h2>
+  <p>Navegue neste sabor!</p>
+</section>
+
+
+    <!-- Combos -->
+    <section id="combos">
+      <div class="section-title">Combos do Convés</div>
+      <div style="height:8px"></div>
+
+      <!-- Item list -->
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="grid">
+          <div>
+            <div class="item-title">PRATO DO NAVEGADOR</div>
+            <div class="item-desc">Filé de peixe à milanesa, batata frita, molho de camarão, arroz e salada</div>
+          </div>
+          <div class="price">R$129</div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <div class="item-title">PRATO DO CAPITÃO</div>
+            <div class="item-desc">Filé grelhado acebolado na chapa, batata frita, massa espaguete, queijo parmesão e salada</div>
+          </div>
+          <div class="price">R$119</div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <div class="item-title">TRIO DO PESCADOR</div>
+            <div class="item-desc">Camarão à milanesa, camarão alho e óleo, camarão ao molho da casa, batata frita, arroz e salada</div>
+          </div>
+          <div class="price">R$199</div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <div class="item-title">COMBO DO MARUJO</div>
+            <div class="item-desc">Mix de filé de peixes com batata frita e anéis de cebola</div>
+          </div>
+          <div class="price">R$89</div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <div class="item-title">COMBO MOBDICK <small style="font-weight:400;display:block">(serve até 4 pessoas)</small></div>
+            <div class="item-desc">Mix de filé de peixes com batata frita e anéis de cebola</div>
+          </div>
+          <div class="price">R$159</div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <div class="item-title">PARMEGIANA DO PORTO</div>
+            <div class="item-desc">Filé de peixe ao molho da casa, batata frita, arroz, tempero verde e salada</div>
+          </div>
+          <div class="price">R$139</div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <div class="item-title">NEMO KIDS</div>
+            <div class="item-desc">Arroz, batata frita e iscas de carnes de res</div>
+          </div>
+          <div class="price">R$35</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Porções -->
+    <section id="porcoes">
+      <div class="section-title">Porções do Convés</div>
+      <div style="height:8px"></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="grid"><div><div class="item-title">CAMARÃO ALHO E ÓLEO</div></div><div class="price">R$99</div></div>
+        <div class="grid"><div><div class="item-title">CAMARÃO À MILANESA</div></div><div class="price">R$99</div></div>
+        <div class="grid"><div><div class="item-title">VIOLINHA DA TRIPULAÇÃO</div></div><div class="price">R$89</div></div>
+        <div class="grid"><div><div class="item-title">TILÁPIA DO POPEYE</div></div><div class="price">R$99</div></div>
+        <div class="grid"><div><div class="item-title">FILÉ DE PANGA PREMIUM</div></div><div class="price">R$79</div></div>
+        <div class="grid"><div><div class="item-title">FILÉ DE TRAÍRA</div></div><div class="price">R$89</div></div>
+        <div class="grid"><div><div class="item-title">POLENTA DO ATIRADOR</div></div><div class="price">R$39</div></div>
+        <div class="grid"><div><div class="item-title">BOIAS DO MARINHEIRO <small style="font-weight:400;display:block">(Anéis de cebola)</small></div></div><div class="price">R$39</div></div>
+        <div class="grid"><div><div class="item-title">BATATA COMODORO (P)</div></div><div class="price">R$20</div></div>
+        <div class="grid"><div><div class="item-title">BATATA CONTRA ALMIRANTE (M)</div></div><div class="price">R$25</div></div>
+        <div class="grid"><div><div class="item-title">BATATA CAPITÃO DO MAR (G)</div></div><div class="price">R$35</div></div>
+      </div>
+    </section>
+
+    <!-- Lanches -->
+    <section id="lanches">
+      <div class="section-title">Lanches</div>
+      <div style="height:8px"></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="grid"><div><div class="item-title">X CAMARÃO</div><div class="item-desc">Camarão rosa grelhado, ao molho da casa, queijo mussarela e maionese caseira</div></div><div class="price">R$42</div></div>
+        <div class="grid"><div><div class="item-title">X FILÉ</div><div class="item-desc">Filé grelhado, pimentão colorido, cebola, tomate, queijo mussarela, ovo e maionese caseira</div></div><div class="price">R$38</div></div>
+        <div class="grid"><div><div class="item-title">X SALADA</div><div class="item-desc">Hambúrguer da casa, ovo, milho, ervilha, tomate, alface e queijo mussarela</div></div><div class="price">R$28</div></div>
+        <div class="grid"><div><div class="item-title">HAMBURGUER OLIVIA PALITO</div><div class="item-desc">Camarão empanado, picles de cebola, queijo mussarela, alface e mostarda</div></div><div class="price">R$45</div></div>
+        <div class="grid"><div><div class="item-title">HAMBURGUER DO BRUTUS</div><div class="item-desc">2 bifes, bacon, queijo cheddar, ovo, pimentão e molho</div></div><div class="price">R$45</div></div>
+        <div class="grid"><div><div class="item-title">PASTEL DE CAMARÃO</div><div class="item-desc">Camarão ao molho da casa com creme de queijos</div></div><div class="price">R$40</div></div>
+      </div>
+    </section>
+
+    <!-- Grelhados -->
+    <section id="grelhados">
+      <div class="section-title">Grelhados</div>
+      <div style="height:8px"></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="grid"><div><div class="item-title">FILÉ DE TILÁPIA</div><div class="item-desc">Filé de tilápia grelhado, batata frita, arroz e salada</div></div><div class="price">R$129</div></div>
+        <div class="grid"><div><div class="item-title">FILÉ DE SALMÃO</div><div class="item-desc">Filé de salmão grelhado, batata frita, arroz e salada</div></div><div class="price">R$139</div></div>
+        <div class="grid"><div><div class="item-title">CAMARÃO</div><div class="item-desc">Camarão rosa grelhado, molho da casa, batata frita, arroz e salada</div></div><div class="price">R$149</div></div>
+      </div>
+    </section>
+
+    <!-- Drinks -->
+    <section id="drinks">
+      <div class="section-title">Drinks</div>
+      <div style="height:8px"></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="grid"><div><div class="item-title">CAIPIRINHA DE VODKA</div><div class="item-desc">Limão, morango, maracujá ou vinho</div></div><div class="price">R$28</div></div>
+        <div class="grid"><div><div class="item-title">CAIPIRINHA DE CACHAÇA</div><div class="item-desc">Limão, morango, maracujá ou vinho</div></div><div class="price">R$23</div></div>
+        <div class="grid"><div><div class="item-title">CAIPIRINHA SEM ÁLCOOL</div></div><div class="price">R$18</div></div>
+        <div class="grid"><div><div class="item-title">APEROL</div></div><div class="price">R$35</div></div>
+        <div class="grid"><div><div class="item-title">MOJITO</div></div><div class="price">R$30</div></div>
+        <div class="grid"><div><div class="item-title">TAÇA DE VINHO DE MESA</div></div><div class="price">R$15</div></div>
+
+        <!-- Soft Drinks -->
+        <div style="height:20px"></div>
+        <div class="section-title">Soft Drinks (Sem Álcool)</div>
+        <div style="height:8px"></div>
+        <div class="grid"><div><div class="item-title">COCA COLA LATA</div></div><div class="price">R$6</div></div>
+        <div class="grid"><div><div class="item-title">COCA COLA LATA ZERO</div></div><div class="price">R$6</div></div>
+        <div class="grid"><div><div class="item-title">FRUKI GUARANÁ LATA</div></div><div class="price">R$6</div></div>
+        <div class="grid"><div><div class="item-title">FRUKI GUARANÁ LATA ZERO</div></div><div class="price">R$6</div></div>
+        <div class="grid"><div><div class="item-title">FRUKI GUARANÁ 600ML (GARRAFA)</div></div><div class="price">R$10</div></div>
+        <div class="grid"><div><div class="item-title">COCA COLA LITRO (GARRAFA)</div></div><div class="price">R$12</div></div>
+        <div class="grid"><div><div class="item-title">ENERGÉTICO</div></div><div class="price">R$10</div></div>
+        <div class="grid"><div><div class="item-title">SODA ITALIANA</div></div><div class="price">R$17</div></div>
+        <div class="grid"><div><div class="item-title">H2O</div></div><div class="price">R$10</div></div>
+        <div class="grid"><div><div class="item-title">ÁGUA COM GÁS</div></div><div class="price">R$5</div></div>
+        <div class="grid"><div><div class="item-title">ÁGUA SEM GÁS</div></div><div class="price">R$5</div></div>
+
+        <!-- Choop -->
+          <div style="height:20px"></div>
+          <div class="section-title">Choop</div>
+          <div style="height:8px"></div>
+          <div class="grid"><div><div class="item-title">CHOPP BRAHMA 360ML</div></div><div class="price">R$15</div></div>
+          <div class="grid"><div><div class="item-title">CHOPP BRAHMA 500ML</div></div><div class="price">R$19</div></div>
+          <div class="grid"><div><div class="item-title">PILSEN ARTESANAL 360ML</div></div><div class="price">R$14</div></div>
+          <div class="grid"><div><div class="item-title">PILSEN ARTESANAL 500ML</div></div><div class="price">R$17</div></div>
+
+          <!-- Long Neck -->
+          <div style="height:20px"></div>
+          <div class="section-title">Long Neck</div>
+          <div style="height:8px"></div>
+          <div class="grid"><div><div class="item-title">STELLA ARTOIS</div></div><div class="price">R$14</div></div>
+          <div class="grid"><div><div class="item-title">HEINEKEN ZERO</div></div><div class="price">R$12</div></div>
+          <div class="grid"><div><div class="item-title">CORONA</div></div><div class="price">R$14</div></div>
+
+          <!-- Sucos -->
+          <div style="height:20px"></div>
+          <div class="section-title">Sucos</div>
+          <div style="height:8px"></div>
+          <div class="grid"><div><div class="item-title">MORANGO</div><div class="item-desc"></div></div><div class="price">R$7,50</div></div>
+          <div class="grid"><div><div class="item-title">ABACAXI</div><div class="item-desc"></div></div><div class="price">R$7,50</div></div>
+          <div class="grid"><div><div class="item-title">ABACAXI COM HORTELÃ</div><div class="item-desc"></div></div><div class="price">R$7,50</div></div>
+          <div class="grid"><div><div class="item-title">UVA</div><div class="item-desc"></div></div><div class="price">R$7,50</div></div>
+          <div class="grid"><div><div class="item-title">SUCO DE UVA GARRAFA 500ML</div><div class="item-desc"></div></div><div class="price">R$10</div></div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="section-title">Contato</div>
+      <div style="height:8px"></div>
+      <p style="color:var(--muted);font-weight:600">Telefone / WhatsApp: <a href="https://wa.me/5551999236760" style="color:var(--beige);text-decoration:none;font-weight:800">+55 51 99923-6760</a></p>
+      <p style="color:rgba(255,255,255,0.7);margin-top:6px">Endereço: Avenida Presidente Vargas, 2632 - São Caetano, Arroio do Meio - RS, 95940-000</p> 
+    </section>
+
+  </main>
+
+  <a class="whatsapp" href="https://wa.me/5551999236760" target="_blank" rel="noopener noreferrer" aria-label="Fazer pedido no WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M18.403 5.633A8.919 8.919 0 0 0 12.053 3c-4.948 0-8.976 4.027-8.978 8.977 0 1.582.413 3.126 1.198 4.488L3 21.116l4.759-1.249a8.981 8.981 0 0 0 4.29 1.093h.004c4.947 0 8.975-4.027 8.977-8.977a8.926 8.926 0 0 0-2.627-6.35m-6.35 13.812h-.003a7.446 7.446 0 0 1-3.798-1.041l-.272-.162-2.824.741.753-2.753-.177-.282a7.448 7.448 0 0 1-1.141-3.971c.002-4.114 3.349-7.461 7.465-7.461a7.413 7.413 0 0 1 5.275 2.188 7.42 7.42 0 0 1 2.183 5.279c-.002 4.114-3.349 7.462-7.461 7.462m4.093-5.589c-.225-.113-1.327-.655-1.533-.73-.205-.075-.354-.112-.504.112-.15.224-.579.73-.71.88-.131.149-.262.168-.486.056-.224-.112-.953-.351-1.815-1.12-.669-.597-1.12-1.335-1.251-1.559-.131-.224-.014-.345.098-.458.101-.101.224-.263.336-.395.112-.132.149-.224.224-.374.075-.15.038-.281-.019-.393-.056-.113-.504-1.217-.69-1.666-.181-.435-.366-.377-.504-.383-.13-.006-.28-.006-.429-.006-.15 0-.393.056-.6.28-.206.225-.787.769-.787 1.876 0 1.107.805 2.176.917 2.326.112.15 1.586 2.421 3.842 3.395.537.232.956.371 1.279.473.535.169 1.021.145 1.409.088.428-.063 1.327-.542 1.514-1.066.187-.524.187-.973.131-1.066-.056-.094-.206-.15-.43-.263" fill="#ffffff"/>
+    </svg>
+    <span>Fazer pedido</span>
+  </a>
+
+  <footer>
+    <p style="color:rgba(255,255,255,0.6);margin-top:8px">© Porto 25 — Navegue neste sabor</p>
+  </footer>
+
+
+  <script>
+    // Smooth scroll for nav
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',function(e){
+        e.preventDefault();
+        const id = this.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(!el) return;
+        const y = el.getBoundingClientRect().top + window.scrollY - 72; // header offset
+        window.scrollTo({top:y,behavior:'smooth'});
+      })
+    })
+
+    // Make header compact on scroll
+    const header = document.querySelector('header');
+    let lastScroll = 0;
+    window.addEventListener('scroll',()=>{
+      const st = window.scrollY;
+      if(st>80) header.style.transform = 'translateY(-4px)'; else header.style.transform = 'translateY(0)';
+      lastScroll = st;
+
+      
+    })
+  </script>
+</body>
+</html>
